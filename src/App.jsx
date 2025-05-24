@@ -481,9 +481,9 @@ const Frog8Website = () => {
   const journeyData = [
     { time: "8:04 AM", action: "Rapido or Uber Auto booked" },
     { time: "8:22 AM", action: "Fastag-linked parking" },
-    { time: "Morning", action: "Coffee stop at station" },
-    { time: "Afternoon", action: "Raahi card offer via WhatsApp" },
-    { time: "Evening", action: "Reward voucher redeemed" }
+    { time: "8:45 AM", action: "Coffee stop at station" },
+    { time: "2:30 PM", action: "Raahi card offer via WhatsApp" },
+    { time: "6:15 PM", action: "Reward voucher redeemed" }
   ];
 
   return (
