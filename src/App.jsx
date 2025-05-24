@@ -521,7 +521,7 @@ const Frog8Website = () => {
             India Next: Under-Captured, Not Underserved
           </HeroTitle>
           <HeroSubtitle>
-            The next 100 million commuters are rising, mobile, and ready. Frog8's B2N (Business-to-Node) strategy deploys financial infrastructure where they already are—at metro stations, trusted and recurring touchpoints.
+            The next 100 million commuters are rising, mobile, and ready. Frog8's B2N (Business-to-Node) strategy deploys financial infrastructure where they already are.
           </HeroSubtitle>
           <ButtonContainer>
             <Button onClick={() => scrollToSection('solutions')}>
@@ -915,48 +915,3 @@ const Frog8Website = () => {
 };
 
 export default Frog8Website;
-
-// import React, { useState } from 'react';
-// import { ThemeProvider } from 'styled-components';
-// import { GlobalStyle } from './styles/GlobalStyles';
-// import { theme } from './styles/theme';
-// import Header from './components/Header';
-// import Hero from './components/Hero';
-// import MarketOpportunity from './components/MarketOpportunity';
-// import Solutions from './components/Solutions';
-// import Products from './components/Products';
-// import Veriphy from './components/Veriphy';
-// import WhyFrog8 from './components/WhyFrog8';
-// import Contact from './components/Contact';
-// import Footer from './components/Footer';
-
-// const App = () => {
-//   const [activeSection, setActiveSection] = useState('home');
-
-//   const scrollToSection = (sectionId) => {
-//     setActiveSection(sectionId);
-//     const element = document.getElementById(sectionId);
-//     if (element) {
-//       element.scrollIntoView({ behavior: 'smooth' });
-//     }
-//   };
-
-//   return (
-//     <ThemeProvider theme={theme}>
-//       <GlobalStyle />
-//       <div className="container" style={{ minHeight: '100vh' }}>
-//         <Header scrollToSection={scrollToSection} />
-//         <Hero scrollToSection={scrollToSection} />
-//         {/* <MarketOpportunity /> */}
-//         <Solutions />
-//         <Products />
-//         <Veriphy />
-//         <WhyFrog8 />
-//         <Contact />
-//         <Footer />
-//       </div>
-//     </ThemeProvider>
-//   );
-// };
-
-// export default App;
