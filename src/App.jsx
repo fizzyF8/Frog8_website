@@ -593,12 +593,12 @@ const Frog8Website = () => {
                   <MetricLabel>Monthly salary range for professionals</MetricLabel>
                 </MetricCard>
                 <MetricCard>
-                  <MetricNumber>20-25%</MetricNumber>
-                  <MetricLabel>College students, aged 18–22</MetricLabel>
-                </MetricCard>
-                <MetricCard>
                   <MetricNumber>High %</MetricNumber>
                   <MetricLabel>Women riders due to safety</MetricLabel>
+                </MetricCard>
+                <MetricCard>
+                  <MetricNumber>20-25%</MetricNumber>
+                  <MetricLabel>College students, aged 18–22</MetricLabel>
                 </MetricCard>
               </Grid>
 
