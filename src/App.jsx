@@ -1,8 +1,10 @@
+// FROG8 WEBSITE - PART 1: IMPORTS & STYLED COMPONENTS
+
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import frog8Logo from './assets/images/frog8_logo.jpg';
 
-// Styled Components
+// ALL STYLED COMPONENTS
 const Container = styled.div`
   min-height: 100vh;
   background-color: #f9fafb;
@@ -22,14 +24,8 @@ const Nav = styled.nav`
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1rem;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  @media (min-width: 640px) { padding: 0 1.5rem; }
+  @media (min-width: 1024px) { padding: 0 2rem; }
 `;
 
 const NavContainer = styled.div`
@@ -49,25 +45,11 @@ const Logo = styled.img`
   width: auto;
 `;
 
-const CompanyName = styled.div`
-  display: none;
-  margin-left: 1rem;
-  font-size: 0.875rem;
-  color: #6b7280;
-
-  @media (min-width: 1024px) {
-    display: block;
-  }
-`;
-
 const NavLinks = styled.div`
   display: flex;
   align-items: center;
   gap: 1rem;
-
-  @media (min-width: 1024px) {
-    gap: 2rem;
-  }
+  @media (min-width: 1024px) { gap: 2rem; }
 `;
 
 const NavButton = styled.button`
@@ -77,19 +59,10 @@ const NavButton = styled.button`
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
-
-  &:hover {
-    color: #a7d221 ;
-  }
-
-  @media (min-width: 1024px) {
-    font-size: 1rem;
-  }
-
+  &:hover { color: #a7d221; }
+  @media (min-width: 1024px) { font-size: 1rem; }
   @media (max-width: 640px) {
-    &.hide-mobile {
-      display: none;
-    }
+    &.hide-mobile { display: none; }
   }
 `;
 
@@ -111,14 +84,8 @@ const SectionContainer = styled.div`
   max-width: 1280px;
   margin: 0 auto;
   padding: 0 1rem;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  @media (min-width: 640px) { padding: 0 1.5rem; }
+  @media (min-width: 1024px) { padding: 0 2rem; }
 `;
 
 const SectionTitle = styled.h2`
@@ -126,10 +93,7 @@ const SectionTitle = styled.h2`
   font-weight: bold;
   text-align: center;
   margin-bottom: 1rem;
-
-  @media (min-width: 768px) {
-    font-size: 2.25rem;
-  }
+  @media (min-width: 768px) { font-size: 2.25rem; }
 `;
 
 const SectionSubtitle = styled.p`
@@ -138,10 +102,7 @@ const SectionSubtitle = styled.p`
   color: #6b7280;
   max-width: 64rem;
   margin: 0 auto 3rem;
-
-  @media (min-width: 768px) {
-    font-size: 1.25rem;
-  }
+  @media (min-width: 768px) { font-size: 1.25rem; }
 `;
 
 const HeroTitle = styled.h1`
@@ -149,10 +110,7 @@ const HeroTitle = styled.h1`
   font-weight: bold;
   margin-bottom: 1.5rem;
   text-align: center;
-
-  @media (min-width: 768px) {
-    font-size: 3.75rem;
-  }
+  @media (min-width: 768px) { font-size: 3.75rem; }
 `;
 
 const HeroSubtitle = styled.p`
@@ -162,10 +120,7 @@ const HeroSubtitle = styled.p`
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-
-  @media (min-width: 768px) {
-    font-size: 1.5rem;
-  }
+  @media (min-width: 768px) { font-size: 1.5rem; }
 `;
 
 const ButtonContainer = styled.div`
@@ -173,10 +128,7 @@ const ButtonContainer = styled.div`
   flex-direction: column;
   justify-content: center;
   gap: 1rem;
-
-  @media (min-width: 640px) {
-    flex-direction: row;
-  }
+  @media (min-width: 640px) { flex-direction: row; }
 `;
 
 const Button = styled.button`
@@ -188,10 +140,7 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
-
-  &:hover {
-    background-color: #f3f4f6;
-  }
+  &:hover { background-color: #f3f4f6; }
 `;
 
 const ButtonOutline = styled.a`
@@ -204,43 +153,29 @@ const ButtonOutline = styled.a`
   display: inline-block;
   text-align: center;
   transition: all 0.3s ease;
-
-  &:hover {
-    background-color: white;
-    color: #059669;
-  }
+  &:hover { background-color: white; color: #059669; }
 `;
 
 const Grid = styled.div`
   display: grid;
   gap: 2rem;
-
   &.cols-3 {
     grid-template-columns: 1fr;
-    
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(3, 1fr);
-    }
+    @media (min-width: 768px) { grid-template-columns: repeat(3, 1fr); }
   }
-
   &.cols-2 {
     grid-template-columns: 1fr;
-    
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
+    @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
   }
-
   &.cols-4 {
     grid-template-columns: 1fr;
-    
-    @media (min-width: 768px) {
-      grid-template-columns: repeat(2, 1fr);
-    }
-    
-    @media (min-width: 1024px) {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
+  }
+  &.cols-5 {
+    grid-template-columns: 1fr;
+    @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1024px) { grid-template-columns: repeat(5, 1fr); }
   }
 `;
 
@@ -256,7 +191,7 @@ const CardTitle = styled.h3`
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
-  color: #a7d221 ;
+  color: #a7d221;
 `;
 
 const CardText = styled.p`
@@ -274,11 +209,7 @@ const JourneyFlow = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-
-  @media (min-width: 768px) {
-    flex-direction: row;
-    gap: 1rem;
-  }
+  @media (min-width: 768px) { flex-direction: row; gap: 1rem; }
 `;
 
 const JourneyStep = styled.div`
@@ -317,18 +248,12 @@ const ArrowContainer = styled.div`
   right: -1rem;
   transform: translateY(-50%);
   z-index: 0;
-
-  @media (max-width: 767px) {
-    display: none;
-  }
+  @media (max-width: 767px) { display: none; }
 `;
 
 const ArrowMobile = styled.div`
   margin: 1rem 0;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
+  @media (min-width: 768px) { display: none; }
 `;
 
 const FlowLine = styled.div`
@@ -341,10 +266,7 @@ const FlowLine = styled.div`
   background-color: #bbf7d0;
   transform: translateY(-50%);
   z-index: -1;
-
-  @media (min-width: 768px) {
-    display: block;
-  }
+  @media (min-width: 768px) { display: block; }
 `;
 
 const List = styled.ul`
@@ -357,12 +279,11 @@ const ListItem = styled.li`
   align-items: center;
   margin-bottom: 0.75rem;
   font-size: 0.875rem;
-
   &::before {
     content: '';
     width: 0.5rem;
     height: 0.5rem;
-    background-color: #a7d221 ;
+    background-color: #a7d221;
     border-radius: 50%;
     margin-right: 0.75rem;
     flex-shrink: 0;
@@ -412,6 +333,34 @@ const GreenTitle = styled.h3`
   color: #166534;
 `;
 
+const MetricCard = styled.div`
+  // background: linear-gradient(135deg, #a7d221 0%, #88b91a 100%);
+  color: black;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  text-align: center;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+`;
+
+const MetricNumber = styled.div`
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+`;
+
+const MetricLabel = styled.div`
+  font-size: 0.875rem;
+  opacity: 0.9;
+`;
+
+const HighlightBox = styled.div`
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  border: 1px solid #0ea5e9;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  margin: 2rem 0;
+`;
+
 const Footer = styled.footer`
   background-color: white;
   color: #1f2937;
@@ -424,14 +373,8 @@ const FooterContainer = styled.div`
   margin: 0 auto;
   padding: 0 1rem;
   text-align: center;
-
-  @media (min-width: 640px) {
-    padding: 0 1.5rem;
-  }
-
-  @media (min-width: 1024px) {
-    padding: 0 2rem;
-  }
+  @media (min-width: 640px) { padding: 0 1.5rem; }
+  @media (min-width: 1024px) { padding: 0 2rem; }
 `;
 
 const FooterLogo = styled.img`
@@ -461,12 +404,13 @@ const FooterLink = styled.a`
   color: #6b7280;
   text-decoration: none;
   transition: color 0.3s ease;
-
-  &:hover {
-    color: #a7d221 ;
-  }
+  &:hover { color: #a7d221; }
 `;
 
+// END OF PART 1
+// FROG8 WEBSITE - PART 2: COMPONENT LOGIC & JSX (Hero to Products)
+
+// MAIN COMPONENT STARTS HERE
 const Frog8Website = () => {
   const [activeSection, setActiveSection] = useState('home');
 
@@ -494,14 +438,13 @@ const Frog8Website = () => {
           <NavContainer>
             <LogoContainer>
               <Logo src={frog8Logo} alt="Frog8 Logo" />
-              {/* <CompanyName>Technology Services Private Limited</CompanyName> */}
             </LogoContainer>
-
             <NavLinks>
               <NavButton onClick={() => scrollToSection('home')}>Home</NavButton>
-              <NavButton onClick={() => scrollToSection('solutions')}>Solutions</NavButton>
+              <NavButton onClick={() => scrollToSection('vision')}>Vision</NavButton>
               <NavButton onClick={() => scrollToSection('products')}>Products</NavButton>
-              <NavButton className="hide-mobile" onClick={() => scrollToSection('why-frog8')}>Why Frog8</NavButton>
+              <NavButton onClick={() => scrollToSection('moat')}>Our Moat</NavButton>
+              <NavButton className="hide-mobile" onClick={() => scrollToSection('investment')}>Investment</NavButton>
               <NavButton onClick={() => scrollToSection('contact')}>Contact</NavButton>
             </NavLinks>
           </NavContainer>
@@ -511,60 +454,84 @@ const Frog8Website = () => {
       {/* Hero Section */}
       <SectionGreen id="home">
         <SectionContainer>
-          {/* <HeroTitle>
-            Empowering Commuter-First Financial Access
-          </HeroTitle> */}
-          {/* <HeroSubtitle>
-            One card. One platform. One journey. Frog8 reimagines public transit as a gateway for inclusive, unattended financial services.
-          </HeroSubtitle> */}
-          <HeroTitle>
-            India Next: Under-Captured, Not Underserved
-          </HeroTitle>
+          <HeroTitle>India Next: Under-Captured, Not Underserved</HeroTitle>
           <HeroSubtitle>
-            The next 100 million commuters are rising, mobile, and ready. Frog8's B2N (Business-to-Node) strategy deploys financial infrastructure where they already are.
+            The next 100 million commuters are rising, mobile, and ready. Frog8 is a mobility-first infrastructure platform building unattended financial access channels across India. We serve digitally active, professionally employed commuters through integrated solutions in transit access, payments, and engagement.
           </HeroSubtitle>
           <ButtonContainer>
-            <Button onClick={() => scrollToSection('solutions')}>
-              Explore Solutions
-            </Button>
-            <ButtonOutline href="mailto:hello@frog8.in">
-              Partner With Us
-            </ButtonOutline>
-            <ButtonOutline href="mailto:hello@frog8.in">
-              Investor Deck
-            </ButtonOutline>
+            <Button onClick={() => scrollToSection('vision')}>Our Vision</Button>
+            <ButtonOutline href="mailto:hello@frog8.in">Partner With Us</ButtonOutline>
+            <ButtonOutline href="mailto:hello@frog8.in">Investor Deck</ButtonOutline>
           </ButtonContainer>
         </SectionContainer>
       </SectionGreen>
 
-      {/* Solutions */}
-      <SectionGray id="solutions">
+      {/* Vision & Platform Overview */}
+      <Section id="vision">
         <SectionContainer>
-          <SectionTitle>
-            One Platform. Multi-Modal. Designed for Scale.
-          </SectionTitle>
-          <SectionSubtitle>
-            Frog8's data-enabled access infrastructure unifies transit, payments, loyalty, and communications to power India's urban mobility and financial inclusion.
-          </SectionSubtitle>
+          <SectionTitle>Frog8: Access & Payments Infrastructure Company</SectionTitle>
+          <SectionSubtitle>We build self-service financial infrastructure at transit hubs, working with any bank or technology partner, while leveraging data to serve India's next generation of commuters."</SectionSubtitle>
+          <HighlightBox>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0369a1', textAlign: 'center' }}>What Frog8 Powers</h3>
+            <Grid className="cols-2">
+              <div>
+                <List>
+                  <ListItem>Secure, compliant access to transit via card, app, wearable, or biometrics</ListItem>
+                  <ListItem>Seamless payments and merchant integrations, including loyalty and offers</ListItem>
+                </List>
+              </div>
+              <div>
+                <List>
+                  <ListItem>Real-time service operations like kiosk monitoring and RM dashboards</ListItem>
+                  <ListItem>A growing alternative data layer—the commuter graph</ListItem>
+                </List>
+              </div>
+            </Grid>
+          </HighlightBox>
 
-
-          {/* Transit Infrastructure */}
           <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>How It All Fits Together</h3>
+            <Grid className="cols-3">
+              <Card>
+                <CardTitle>🏢 Frog8 Platform</CardTitle>
+                <CardText style={{ marginBottom: '1rem' }}><strong>Core Infrastructure</strong></CardText>
+                <CardText>Infrastructure + commuter data + integration layer</CardText>
+              </Card>
+              <Card>
+                <CardTitle>💳 Raahi Card</CardTitle>
+                <CardText style={{ marginBottom: '1rem' }}><strong>Frog8 + NSDL PB</strong></CardText>
+                <CardText>NCMC lifestyle card + metro + merchant + loyalty</CardText>
+              </Card>
+              <Card>
+                <CardTitle>📲 Veriphy.io</CardTitle>
+                <CardText style={{ marginBottom: '1rem' }}><strong>Workflow Engine</strong></CardText>
+                <CardText>WhatsApp-based enablement for service, onboarding, and ops</CardText>
+              </Card>
+            </Grid>
+          </div>
+
+        </SectionContainer>
+      </Section>
+
+      {/* Products & Solutions */}
+      <SectionGray id="products">
+        <SectionContainer>
+          <SectionTitle>Complete Product Ecosystem</SectionTitle>
+          <SectionSubtitle>Modular infrastructure designed for scale, powering transit and financial inclusion across India's metro networks.</SectionSubtitle>
+
+          {/* Smart Kiosk Infrastructure */}
+          <div style={{ marginBottom: '5rem' }}>
             <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Smart Kiosk Infrastructure</h3>
-            <Grid className="cols-2" style={{ marginBottom: '3rem' }}>
-              <Card leftAlign>
+            <Grid className="cols-3">
+              <Card>
                 <CardTitle>TVM 1000</CardTitle>
-                <p style={{ color: '#6b7280', marginBottom: '1rem' }}>
-                  QR ticket printing for seamless commuter access.
-                  Real-time transaction processing and UPI payments for instant, cashless travel.
-                </p>
+                <p style={{ color: '#6b7280', marginBottom: '1rem' }}>QR ticket printing for seamless commuter access. Real-time transaction processing and UPI payments.</p>
                 <List>
                   <ListItem>QR ticket printing</ListItem>
-                  <ListItem>Real-time transaction processing</ListItem>
                   <ListItem>UPI payments</ListItem>
+                  <ListItem>Real-time processing</ListItem>
                 </List>
               </Card>
-
               <Card>
                 <CardTitle>TVM 2000</CardTitle>
                 <p style={{ color: '#6b7280', marginBottom: '1rem' }}>Compact kiosk for tickets, balance checks, and top-ups. PCI-certified and live across BMRCL.</p>
@@ -575,7 +542,6 @@ const Frog8Website = () => {
                   <ListItem>Real-time transaction processing</ListItem>
                 </List>
               </Card>
-
               <Card>
                 <CardTitle>TVM 4000</CardTitle>
                 <p style={{ color: '#6b7280', marginBottom: '1rem' }}>Full-featured kiosk with card issuance, cash acceptance, and KYC capabilities.</p>
@@ -587,35 +553,56 @@ const Frog8Website = () => {
                 </List>
               </Card>
             </Grid>
+          </div>
 
-            {/* Access Methods */}
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Beyond Plastic: Access-Agnostic Design</h3>
-            <Grid className="cols-2" style={{ alignItems: 'center', marginBottom: '4rem', gap: '3rem' }}>
-              <div>
-                <List>
-                  <ListItem>NCMC-compliant prepaid and credit cards</ListItem>
-                  <ListItem>NFC-enabled smartphones and wearables</ListItem>
-                  <ListItem>QR-based check-in/out and app SDKs</ListItem>
-                  <ListItem>Fastag-linked parking access</ListItem>
-                  <ListItem>Future-ready biometric entry</ListItem>
-                </List>
-              </div>
-              <QuoteCard>
-                <Quote>
-                  "We support any pathway that helps commuters move securely and frictionlessly."
-                </Quote>
-              </QuoteCard>
-            </Grid>
-
-            {/* Raahi Ecosystem */}
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Raahi Card Ecosystem</h3>
+          {/* Raahi Card Ecosystem */}
+          <div style={{ marginBottom: '5rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>💳 Raahi: Transit & Lifestyle Card Platform</h3>
             <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
-              One card. One platform. One journey. Frog8 reimagines public transit as a gateway for inclusive, unattended financial services.Co-branded with NSDL PB, the Raahi Card is a scalable NCMC solution for transit and merchant payments.
+              An NCMC-compliant transit and merchant card that uses metro networks as high-intent, high-frequency channels to reach "India Next". Co-created with NSDL Payments Bank.
             </p>
-            <div style={{ marginBottom: '4rem' }}>
-              {/* <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Market Opportunity</h3> */}
 
-              <Grid className="cols-3" style={{ marginBottom: '4rem' }}>
+            <HighlightBox style={{ marginBottom: '2rem' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0369a1' }}>What Raahi Enables</h4>
+              <Grid className="cols-2">
+                <div>
+                  <List>
+                    <ListItem>Tap-and-go metro access</ListItem>
+                    <ListItem>Merchant payments and discounts</ListItem>
+                  </List>
+                </div>
+                <div>
+                  <List>
+                    <ListItem>Loyalty points and micro-rewards</ListItem>
+                    <ListItem>Can be issued by any partner bank, not just NSDL PB</ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </HighlightBox>
+
+
+            <div style={{ marginBottom: '4rem' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Why Metro Matters: India Next Demographics</h3>
+              <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+                Metro systems bring together a digitally active, professionally employed commuter segment. This population isn't underserved—it's under-captured.
+              </p>
+
+              <Grid className="cols-3" style={{ marginBottom: '3rem' }}>
+                <MetricCard>
+                  <MetricNumber>₹25K-40K</MetricNumber>
+                  <MetricLabel>Monthly salary range for professionals</MetricLabel>
+                </MetricCard>
+                <MetricCard>
+                  <MetricNumber>20-25%</MetricNumber>
+                  <MetricLabel>College students, aged 18–22</MetricLabel>
+                </MetricCard>
+                <MetricCard>
+                  <MetricNumber>High %</MetricNumber>
+                  <MetricLabel>Women riders due to safety</MetricLabel>
+                </MetricCard>
+              </Grid>
+
+              <Grid className="cols-3">
                 <Card>
                   <CardTitle>Professionals</CardTitle>
                   <CardText>Earning ₹25,000–₹40,000/month, fluent in UPI and QR codes</CardText>
@@ -630,48 +617,45 @@ const Frog8Website = () => {
                 </Card>
               </Grid>
 
-              {/* Journey Mapping */}
               <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
                 <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Capturing the Commuter Journey</h3>
                 <p style={{ fontSize: '1.125rem', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
                   From ride-booking to rewards, Frog8 captures micro-moments to build a consented commuter graph—personalizing products and improving credit models.
                 </p>
               </div>
-              <JourneyContainer>
-                <JourneyFlow>
-                  {journeyData.map((item, index) => (
-                    <JourneyStep key={index}>
-                      <JourneyCard>
-                        <JourneyTime>{item.time}</JourneyTime>
-                        <JourneyAction>{item.action}</JourneyAction>
-                      </JourneyCard>
 
-                      {index < 4 && (
-                        <ArrowContainer>
-                          <svg width="32" height="16" viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M24 1L31 8L24 15M0 8H31" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </ArrowContainer>
-                      )}
-
-                      {index < 4 && (
-                        <ArrowMobile>
-                          <svg width="16" height="32" viewBox="0 0 16 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 24L8 31L15 24M8 0V31" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                          </svg>
-                        </ArrowMobile>
-                      )}
-                    </JourneyStep>
-                  ))}
-                </JourneyFlow>
-                <FlowLine />
-              </JourneyContainer>
             </div>
 
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Types and Features</h3>
-            <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
-              The Raahi Card ecosystem supports progressive KYC journeys, enabling users to start with basic transit access and upgrade to full financial services. From metro gates to merchant terminals, one card powers multiple payment scenarios while maintaining regulatory compliance.
-            </p>
+
+            <JourneyContainer>
+              <JourneyFlow>
+                {journeyData.map((item, index) => (
+                  <JourneyStep key={index}>
+                    <JourneyCard>
+                      <JourneyTime>{item.time}</JourneyTime>
+                      <JourneyAction>{item.action}</JourneyAction>
+                    </JourneyCard>
+                    {index < 4 && (
+                      <ArrowContainer>
+                        <svg width="32" height="16" viewBox="0 0 32 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M24 1L31 8L24 15M0 8H31" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </ArrowContainer>
+                    )}
+                    {index < 4 && (
+                      <ArrowMobile>
+                        <svg width="16" height="32" viewBox="0 0 16 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M1 24L8 31L15 24M8 0V31" stroke="#10B981" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                        </svg>
+                      </ArrowMobile>
+                    )}
+                  </JourneyStep>
+                ))}
+              </JourneyFlow>
+              <FlowLine />
+            </JourneyContainer>
+
+            <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Flexible KYC Tiers & Features</h4>
             <Grid className="cols-4">
               <SmallCard>
                 <CardTitle>Zero KYC</CardTitle>
@@ -690,79 +674,51 @@ const Frog8Website = () => {
                 <CardText>Credit products and BNPL integration</CardText>
               </SmallCard>
             </Grid>
+
+            <div style={{ marginTop: '2rem' }}>
+              {/* <h4 style={{ fontSize: '1.125rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>Unique Features</h4> */}
+              <Grid className="cols-3">
+                <SmallCard>
+                  <CardText><strong>Zero and full KYC flows</strong> for progressive onboarding</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardText><strong>Card control, recharge, and trip data</strong> via WhatsApp or Raahi app</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardText><strong>Raahi-specific offers</strong> delivered on the move</CardText>
+                </SmallCard>
+              </Grid>
+            </div>
           </div>
-        </SectionContainer>
-      </SectionGray>
 
-      {/* Products */}
-      <Section id="products">
-        <SectionContainer>
-          <SectionTitle>Platform Components</SectionTitle>
-          <SectionSubtitle>
-            Modular infrastructure designed for the edge, powering transit and financial inclusion.
-          </SectionSubtitle>
-
-          {/* Core Products */}
-          <Grid className="cols-3" style={{ marginBottom: '4rem' }}>
-            <Card>
-              <CardTitle>Smart Kiosks</CardTitle>
-              <p style={{ color: '#6b7280', marginBottom: '1rem' }}>TVM 2000 & 4000 for ticketing, top-ups, and card services</p>
-              <List>
-                <ListItem>Accept UPI, cash, and cards</ListItem>
-                <ListItem>Real-time payment processing</ListItem>
-                <ListItem>PCI-DSS certified</ListItem>
-              </List>
-            </Card>
-            <Card>
-              <CardTitle>Raahi Card</CardTitle>
-              <p style={{ color: '#6b7280', marginBottom: '1rem' }}>NCMC-compliant card for transit and retail payments</p>
-              <List>
-                <ListItem>Co-branded with NSDL PB</ListItem>
-                <ListItem>Instant issuance at stations</ListItem>
-                <ListItem>Multi-modal usage</ListItem>
-              </List>
-            </Card>
-            <Card>
-              <CardTitle>Payment Stack</CardTitle>
-              <p style={{ color: '#6b7280', marginBottom: '1rem' }}>SDKs and terminals for seamless transactions</p>
-              <List>
-                <ListItem>QR and NFC integration</ListItem>
-                <ListItem>Digital signage support</ListItem>
-                <ListItem>Merchant engagement tools</ListItem>
-              </List>
-            </Card>
-          </Grid>
-
-          {/* Technical Capabilities */}
-          <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Technical Excellence</h3>
-          <Grid className="cols-4">
-            <GrayCard>
-              <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>PCI-DSS</h4>
-              <CardText>Payment security compliance</CardText>
-            </GrayCard>
-            <GrayCard>
-              <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>RBI Guidelines</h4>
-              <CardText>KYC and regulatory compliance</CardText>
-            </GrayCard>
-            <GrayCard>
-              <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>NPCI Certified</h4>
-              <CardText>NCMC and UPI integrations</CardText>
-            </GrayCard>
-            <GrayCard>
-              <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>UIDAI Compliant</h4>
-              <CardText>Aadhaar authentication</CardText>
-            </GrayCard>
-          </Grid>
-
-          {/* Veriphy Product */}
-          <div style={{ marginTop: '5rem' }}>
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Veriphy.io: Smart Onboarding Platform</h3>
+          {/* Veriphy Platform */}
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>📲 Veriphy.io: Workflow & Ops Enabler</h3>
             <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
-              WhatsApp-based onboarding and workflow platform for industries where speed, trust, and visibility matter.
+              A WhatsApp-native workflow engine built for real-world operations. Used by Frog8 internally and by partners externally.
             </p>
 
-            {/* Core Capabilities */}
-            <Grid className="cols-3" style={{ marginBottom: '4rem' }}>
+            <HighlightBox style={{ marginBottom: '2rem' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0369a1' }}>Where Veriphy Is Used</h4>
+              <Grid className="cols-2">
+                <div>
+                  <List>
+                    <ListItem>Card onboarding and KYC for Raahi</ListItem>
+                    <ListItem>RM and service staff dashboards at metro stations</ListItem>
+                    <ListItem>TVM health checks, fault logs, and technician coordination</ListItem>
+                  </List>
+                </div>
+                <div>
+                  <List>
+                    <ListItem>Merchant acquiring, terminal tracking, and compliance</ListItem>
+                    <ListItem>Customer communication – offers, feedback, alerts</ListItem>
+                    <ListItem>Multi-industry workflow automation</ListItem>
+                  </List>
+                </div>
+              </Grid>
+            </HighlightBox>
+
+            <Grid className="cols-3">
               <Card>
                 <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>Journey Tracking</h4>
                 <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>Map touchpoints, identify delays, trigger nudges</p>
@@ -779,50 +735,168 @@ const Frog8Website = () => {
                 <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Automated follow-ups and support</p>
               </Card>
             </Grid>
+          </div>
 
-            {/* Industry Applications */}
-            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Industry Applications</h3>
+          {/* Access-Agnostic Design */}
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>We Are Access-Agnostic</h3>
+            <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+              Frog8 supports any secure, NPCI-compliant access method to ensure frictionless mobility across all platforms.
+            </p>
+            <Grid className="cols-4">
+              <GrayCard>
+                <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>Bank-Agnostic</h4>
+                <CardText>We support any issuer</CardText>
+              </GrayCard>
+              <GrayCard>
+                <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>Tech-Agnostic</h4>
+                <CardText>Card, NFC, QR, app, wearable, biometric</CardText>
+              </GrayCard>
+              <GrayCard>
+                <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>Compliance-Ready</h4>
+                <CardText>PCI-DSS, FIME, NCMC, NPCI aligned</CardText>
+              </GrayCard>
+              <GrayCard>
+                <h4 style={{ fontWeight: '600', color: '#a7d221', marginBottom: '0.5rem' }}>Platform-First</h4>
+                <CardText>Unified transit, finance, and engagement</CardText>
+              </GrayCard>
+            </Grid>
+          </div>
+        </SectionContainer>
+      </SectionGray>
+
+      {/* Strategic Moat */}
+      <Section id="moat">
+        <SectionContainer>
+          <SectionTitle>Our Strategic Moat: B2N + Data</SectionTitle>
+          <SectionSubtitle>
+            We operate a B2N (Business to Node) model — embedding financial access directly into commuter nodes: kiosks, cards, apps, WhatsApp, NFC devices, and SDKs.
+          </SectionSubtitle>
+
+          <HighlightBox style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#0369a1', textAlign: 'center' }}>
+              This Approach Creates Powerful Advantages
+            </h3>
+            <Grid className="cols-3">
+              <div style={{ textAlign: 'center' }}>
+                <h4 style={{ fontWeight: '600', color: '#15803d', marginBottom: '0.5rem' }}>Eliminates Traditional CAC</h4>
+                <CardText>No customer acquisition costs through direct node placement</CardText>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <h4 style={{ fontWeight: '600', color: '#15803d', marginBottom: '0.5rem' }}>Builds Daily Engagement</h4>
+                <CardText>Through habit formation and recurring touchpoints</CardText>
+              </div>
+              <div style={{ textAlign: 'center' }}>
+                <h4 style={{ fontWeight: '600', color: '#15803d', marginBottom: '0.5rem' }}>Alternative Data Capture</h4>
+                <CardText>Transit behavior, payments, and movement patterns</CardText>
+              </div>
+            </Grid>
+          </HighlightBox>
+
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>The Commuter Graph</h3>
+            <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+              Creates a commuter graph with high potential for personalisation, credit scoring, and cross-selling.
+            </p>
             <Grid className="cols-3">
               <Card>
-                <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1rem', color: '#a7d221' }}>Transit & Metro</h4>
-                <List>
-                  <ListItem>Card issuance and KYC workflows</ListItem>
-                  <ListItem>Agent task management</ListItem>
-                  <ListItem>Customer engagement and support</ListItem>
-                </List>
+                <CardTitle>Personalization Engine</CardTitle>
+                <CardText>Tailored offers based on commute patterns, spending habits, and location preferences</CardText>
               </Card>
               <Card>
-                <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1rem', color: '#a7d221' }}>Banking & NBFCs</h4>
-                <List>
-                  <ListItem>Loan onboarding and PDD tracking</ListItem>
-                  <ListItem>RM performance management</ListItem>
-                  <ListItem>Automated compliance workflows</ListItem>
-                </List>
+                <CardTitle>Credit Scoring</CardTitle>
+                <CardText>Alternative data from transit usage, payment consistency, and behavioral patterns</CardText>
               </Card>
               <Card>
-                <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '1rem', color: '#a7d221' }}>Insurance & Healthcare</h4>
-                <List>
-                  <ListItem>Policy issuance automation</ListItem>
-                  <ListItem>Claims workflow management</ListItem>
-                  <ListItem>Agent-customer coordination</ListItem>
-                </List>
+                <CardTitle>Cross-Selling Opportunities</CardTitle>
+                <CardText>Insurance, loans, investment products aligned with commuter lifecycle and needs</CardText>
               </Card>
+            </Grid>
+          </div>
+
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>Where We're Live</h3>
+            <Grid className="cols-2" style={{ gap: '3rem', alignItems: 'center' }}>
+              <div>
+                <List>
+                  <ListItem>Deployments with BMRCL (Namma Metro) on Purple and Green lines</ListItem>
+                  <ListItem>Co-branded Raahi Card with NSDL Payments Bank</ListItem>
+                  <ListItem>FAT/SAT-compliant infrastructure in place</ListItem>
+                  <ListItem>Integration with NPCI, Visa/Mastercard certs underway</ListItem>
+                  <ListItem>Ready for expansion to other Tier 1 & 2 cities</ListItem>
+                </List>
+              </div>
+              <QuoteCard>
+                <Quote>
+                  "Live deployments with proven infrastructure, ready for rapid scaling across India's metro networks."
+                </Quote>
+              </QuoteCard>
             </Grid>
           </div>
         </SectionContainer>
       </Section>
 
-      {/* Why Frog8 */}
-      <Section id="why-frog8">
+      {/* Investment Thesis */}
+      <SectionGray id="investment">
         <SectionContainer>
-          <SectionTitle>Why Frog8</SectionTitle>
+          <SectionTitle>Why This Is Investable</SectionTitle>
           <SectionSubtitle>
-            Delivering impact, inclusion, and infrastructure that scales with India's urban growth.
+            Large, addressable market with proven infrastructure and multiple monetization streams.
           </SectionSubtitle>
 
+          {/* Investment Highlights */}
+          <Grid className="cols-5" style={{ marginBottom: '4rem' }}>
+            <MetricCard>
+              <MetricNumber>✅</MetricNumber>
+              <MetricLabel>Large, addressable market</MetricLabel>
+            </MetricCard>
+            <MetricCard>
+              <MetricNumber>✅</MetricNumber>
+              <MetricLabel>Low CAC, high-frequency usage</MetricLabel>
+            </MetricCard>
+            <MetricCard>
+              <MetricNumber>✅</MetricNumber>
+              <MetricLabel>Multi-product monetization</MetricLabel>
+            </MetricCard>
+            <MetricCard>
+              <MetricNumber>✅</MetricNumber>
+              <MetricLabel>Regulatory alignment + infrastructure</MetricLabel>
+            </MetricCard>
+            <MetricCard>
+              <MetricNumber>✅</MetricNumber>
+              <MetricLabel>Deep expertise across fintech, transit</MetricLabel>
+            </MetricCard>
+          </Grid>
+
+          {/* Monetization Streams */}
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
+              Multi-Product Monetization
+            </h3>
+            <Grid className="cols-4">
+              <Card>
+                <CardTitle>Cards & Payments</CardTitle>
+                <CardText>Transaction fees, interchange revenue, and processing margins</CardText>
+              </Card>
+              <Card>
+                <CardTitle>Financial Products</CardTitle>
+                <CardText>Loans, insurance, investment products with data-driven underwriting</CardText>
+              </Card>
+              <Card>
+                <CardTitle>Merchant Services</CardTitle>
+                <CardText>Terminal deployment, payment processing, and loyalty programs</CardText>
+              </Card>
+              <Card>
+                <CardTitle>Data & Analytics</CardTitle>
+                <CardText>Commuter insights, behavioral analytics, and targeted advertising</CardText>
+              </Card>
+            </Grid>
+          </div>
+
+          {/* Market Advantages */}
           <Grid className="cols-2" style={{ marginBottom: '4rem', gap: '3rem' }}>
             <div>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>Market Advantages</h3>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>Market Position</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <Card>
                   <h4 style={{ fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>Ready, Not Risky</h4>
@@ -835,11 +909,11 @@ const Frog8Website = () => {
               </div>
             </div>
             <div>
-              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>Technical Strengths</h3>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>Technical Edge</h3>
               <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
                 <Card>
                   <h4 style={{ fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>Better Products</h4>
-                  <CardText>Daily data drives smarter financial offerings</CardText>
+                  <CardText>Daily data drives smarter financial offerings and risk assessment</CardText>
                 </Card>
                 <Card>
                   <h4 style={{ fontWeight: '600', color: '#1f2937', marginBottom: '0.5rem' }}>Live & Scalable</h4>
@@ -849,7 +923,7 @@ const Frog8Website = () => {
             </div>
           </Grid>
 
-          {/* Key Differentiators */}
+          {/* Built for Bharat */}
           <GreenSection>
             <GreenTitle>Built for Bharat</GreenTitle>
             <Grid className="cols-3">
@@ -867,27 +941,48 @@ const Frog8Website = () => {
               </div>
             </Grid>
           </GreenSection>
+
+          {/* Investment Focus Areas */}
+          <div style={{ marginTop: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
+              Perfect for Investors Focused On
+            </h3>
+            <Grid className="cols-3">
+              <SmallCard>
+                <CardTitle>Financial Inclusion</CardTitle>
+                <CardText>With profitability and sustainable unit economics</CardText>
+              </SmallCard>
+              <SmallCard>
+                <CardTitle>Real-World Distribution</CardTitle>
+                <CardText>With tech scale and data network effects</CardText>
+              </SmallCard>
+              <SmallCard>
+                <CardTitle>Urban Infrastructure</CardTitle>
+                <CardText>With data-enabled services and recurring revenue</CardText>
+              </SmallCard>
+            </Grid>
+          </div>
         </SectionContainer>
-      </Section>
+      </SectionGray>
 
       {/* Contact */}
       <SectionGreen id="contact">
         <SectionContainer>
           <h2 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '2rem', textAlign: 'center' }}>
-            Let's Build India Next Together
+            Let's Move India Forward
           </h2>
           <p style={{ fontSize: '1.125rem', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem', textAlign: 'center' }}>
-            Partner with Frog8 to bring commuter-first financial access to millions. Transform transit stations into gateways for financial inclusion.
+            Join us in building the infrastructure that will serve the next 100 million commuters. Transform transit stations into gateways for financial inclusion.
           </p>
           <ButtonContainer>
             <ButtonOutline href="mailto:hello@frog8.in">
               Request Demo
             </ButtonOutline>
             <ButtonOutline href="mailto:hello@frog8.in">
-              Partner With Us
+              Investment Discussion
             </ButtonOutline>
             <ButtonOutline href="mailto:hello@frog8.in">
-              Investor Deck
+              Partnership Inquiry
             </ButtonOutline>
           </ButtonContainer>
         </SectionContainer>
@@ -901,7 +996,7 @@ const Frog8Website = () => {
             © 2025 Frog8 Technology Services Private Limited. All rights reserved.
           </FooterText>
           <FooterSubtext>
-            Empowering Commuter-First Financial Access
+            Turning Metro Mobility into Financial Access for India Next
           </FooterSubtext>
           <FooterLinks>
             <FooterLink href="mailto:hello@frog8.in">Contact</FooterLink>
