@@ -2,7 +2,54 @@
 
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { 
+  FaMobileAlt, 
+  FaCreditCard, 
+  FaShieldAlt, 
+  FaChartLine,
+  FaWhatsapp,
+  FaUserShield,
+  FaQrcode,
+  FaMoneyBillWave,
+  FaIdCard,
+  FaFingerprint,
+  FaVideo,
+  FaRobot,
+  FaBuilding,
+  FaHandshake,
+  FaUsers,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaDownload,
+  FaArrowRight,
+  FaCheckCircle,
+  FaLock,
+  FaGlobe,
+  FaMobile,
+  FaHandshake
+} from 'react-icons/fa';
+import { 
+  MdSecurity, 
+  MdPayment, 
+  MdSpeed, 
+  MdVerifiedUser,
+  MdAccessTime,
+  MdLocationOn,
+  MdEmail,
+  MdPhone
+} from 'react-icons/md';
+import { 
+  BsFillShieldLockFill, 
+  BsFillCreditCardFill,
+  BsFillPersonFill,
+  BsFillBuildingFill
+} from 'react-icons/bs';
 import frog8Logo from './assets/images/frog8_logo.jpg';
+import heroImage from './assets/images/hero-image.jpg';
+import kioskImage from './assets/images/kiosk-image.jpg';
+import cardImage from './assets/images/card-image.jpg';
+import workflowImage from './assets/images/workflow-image.jpg';
 
 // ALL STYLED COMPONENTS
 const Container = styled.div`
@@ -10,6 +57,7 @@ const Container = styled.div`
   background-color: #f9fafb;
   color: #1f2937;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+  overflow-x: hidden;
 `;
 
 const Header = styled.header`
@@ -18,6 +66,7 @@ const Header = styled.header`
   position: sticky;
   top: 0;
   z-index: 50;
+  width: 100%;
 `;
 
 const Nav = styled.nav`
@@ -26,6 +75,7 @@ const Nav = styled.nav`
   padding: 0 1rem;
   @media (min-width: 640px) { padding: 0 1.5rem; }
   @media (min-width: 1024px) { padding: 0 2rem; }
+  width: 100%;
 `;
 
 const NavContainer = styled.div`
@@ -33,16 +83,63 @@ const NavContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   height: 4rem;
+  flex-wrap: wrap;
+  position: relative;
+  @media (max-width: 640px) {
+    height: auto;
+    padding: 0.75rem 0;
+  }
 `;
 
 const LogoContainer = styled.div`
   display: flex;
   align-items: center;
+  @media (max-width: 640px) {
+    margin-bottom: 0.5rem;
+  }
 `;
 
 const Logo = styled.img`
   height: 2.5rem;
   width: auto;
+  @media (max-width: 640px) {
+    height: 2rem;
+  }
+`;
+
+const MobileMenuButton = styled.button`
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 30px;
+  height: 21px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 10;
+  flex-shrink: 0;
+  margin-right: 1rem;
+
+  @media (min-width: 641px) {
+    display: none;
+  }
+
+  @media (max-width: 640px) {
+    display: flex;
+  }
+
+  span {
+    width: 100%;
+    height: 3px;
+    background-color: #374151;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+  }
+
+  &:hover span {
+    background-color: #a7d221;
+  }
 `;
 
 const NavLinks = styled.div`
@@ -50,6 +147,29 @@ const NavLinks = styled.div`
   align-items: center;
   gap: 1rem;
   @media (min-width: 1024px) { gap: 2rem; }
+  
+  @media (min-width: 641px) {
+    display: flex !important;
+  }
+  
+  @media (max-width: 640px) {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white;
+    padding: 0.5rem 0;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    z-index: 40;
+    gap: 0;
+
+    &.active {
+      display: flex;
+    }
+  }
 `;
 
 const NavButton = styled.button`
@@ -59,15 +179,32 @@ const NavButton = styled.button`
   border: none;
   cursor: pointer;
   transition: color 0.3s ease;
+  padding: 0.5rem;
+  white-space: nowrap;
   &:hover { color: #a7d221; }
-  @media (min-width: 1024px) { font-size: 1rem; }
+  
+  @media (min-width: 1024px) { 
+    font-size: 1rem; 
+  }
+  
   @media (max-width: 640px) {
-    &.hide-mobile { display: none; }
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #e5e7eb;
+    
+    &:last-child {
+      border-bottom: none;
+    }
   }
 `;
 
 const Section = styled.section`
   padding: 4rem 0;
+  @media (max-width: 640px) {
+    padding: 2rem 0;
+  }
 `;
 
 const SectionGray = styled(Section)`
@@ -78,6 +215,9 @@ const SectionGreen = styled(Section)`
   background-image: linear-gradient(to right, #059669, #0d9488);
   color: white;
   padding: 5rem 0;
+  @media (max-width: 640px) {
+    padding: 3rem 0;
+  }
 `;
 
 const SectionContainer = styled.div`
@@ -86,6 +226,7 @@ const SectionContainer = styled.div`
   padding: 0 1rem;
   @media (min-width: 640px) { padding: 0 1.5rem; }
   @media (min-width: 1024px) { padding: 0 2rem; }
+  width: 100%;
 `;
 
 const SectionTitle = styled.h2`
@@ -94,6 +235,10 @@ const SectionTitle = styled.h2`
   text-align: center;
   margin-bottom: 1rem;
   @media (min-width: 768px) { font-size: 2.25rem; }
+  @media (max-width: 640px) {
+    font-size: 1.5rem;
+    margin-bottom: 0.75rem;
+  }
 `;
 
 const SectionSubtitle = styled.p`
@@ -103,6 +248,10 @@ const SectionSubtitle = styled.p`
   max-width: 64rem;
   margin: 0 auto 3rem;
   @media (min-width: 768px) { font-size: 1.25rem; }
+  @media (max-width: 640px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const HeroTitle = styled.h1`
@@ -111,6 +260,10 @@ const HeroTitle = styled.h1`
   margin-bottom: 1.5rem;
   text-align: center;
   @media (min-width: 768px) { font-size: 3.75rem; }
+  @media (max-width: 640px) {
+    font-size: 1.75rem;
+    margin-bottom: 1rem;
+  }
 `;
 
 const HeroSubtitle = styled.p`
@@ -121,6 +274,10 @@ const HeroSubtitle = styled.p`
   margin-right: auto;
   text-align: center;
   @media (min-width: 768px) { font-size: 1.5rem; }
+  @media (max-width: 640px) {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
 `;
 
 const ButtonContainer = styled.div`
@@ -129,6 +286,9 @@ const ButtonContainer = styled.div`
   justify-content: center;
   gap: 1rem;
   @media (min-width: 640px) { flex-direction: row; }
+  @media (max-width: 640px) {
+    gap: 0.75rem;
+  }
 `;
 
 const Button = styled.button`
@@ -140,6 +300,8 @@ const Button = styled.button`
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
+  width: 100%;
+  @media (min-width: 640px) { width: auto; }
   &:hover { background-color: #f3f4f6; }
 `;
 
@@ -153,6 +315,8 @@ const ButtonOutline = styled.a`
   display: inline-block;
   text-align: center;
   transition: all 0.3s ease;
+  width: 100%;
+  @media (min-width: 640px) { width: auto; }
   &:hover { background-color: white; color: #059669; }
 `;
 
@@ -161,21 +325,25 @@ const Grid = styled.div`
   gap: 2rem;
   &.cols-3 {
     grid-template-columns: 1fr;
-    @media (min-width: 768px) { grid-template-columns: repeat(3, 1fr); }
+    @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 1024px) { grid-template-columns: repeat(3, 1fr); }
   }
   &.cols-2 {
     grid-template-columns: 1fr;
-    @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
   }
   &.cols-4 {
     grid-template-columns: 1fr;
-    @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
     @media (min-width: 1024px) { grid-template-columns: repeat(4, 1fr); }
   }
   &.cols-5 {
     grid-template-columns: 1fr;
-    @media (min-width: 768px) { grid-template-columns: repeat(2, 1fr); }
+    @media (min-width: 640px) { grid-template-columns: repeat(2, 1fr); }
     @media (min-width: 1024px) { grid-template-columns: repeat(5, 1fr); }
+  }
+  @media (max-width: 640px) {
+    gap: 1rem;
   }
 `;
 
@@ -185,6 +353,9 @@ const Card = styled.div`
   border-radius: 0.5rem;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   text-align: center;
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+  }
 `;
 
 const CardTitle = styled.h3`
@@ -209,7 +380,13 @@ const JourneyFlow = styled.div`
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  @media (min-width: 768px) { flex-direction: row; gap: 1rem; }
+  @media (min-width: 768px) { 
+    flex-direction: row; 
+    gap: 1rem;
+  }
+  @media (max-width: 640px) {
+    gap: 1rem;
+  }
 `;
 
 const JourneyStep = styled.div`
@@ -228,6 +405,10 @@ const JourneyCard = styled.div`
   min-width: 200px;
   position: relative;
   z-index: 10;
+  @media (max-width: 640px) {
+    min-width: 150px;
+    padding: 1rem;
+  }
 `;
 
 const JourneyTime = styled.p`
@@ -334,18 +515,23 @@ const GreenTitle = styled.h3`
 `;
 
 const MetricCard = styled.div`
-  // background: linear-gradient(135deg, #a7d221 0%, #88b91a 100%);
   color: black;
   padding: 2rem;
   border-radius: 0.5rem;
   text-align: center;
   box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  @media (max-width: 640px) {
+    padding: 1.5rem;
+  }
 `;
 
 const MetricNumber = styled.div`
   font-size: 2rem;
   font-weight: bold;
   margin-bottom: 0.5rem;
+  @media (max-width: 640px) {
+    font-size: 1.5rem;
+  }
 `;
 
 const MetricLabel = styled.div`
@@ -366,6 +552,9 @@ const Footer = styled.footer`
   color: #1f2937;
   padding: 3rem 0;
   border-top: 1px solid #e5e7eb;
+  @media (max-width: 640px) {
+    padding: 2rem 0;
+  }
 `;
 
 const FooterContainer = styled.div`
@@ -398,6 +587,10 @@ const FooterLinks = styled.div`
   display: flex;
   justify-content: center;
   gap: 1.5rem;
+  @media (max-width: 640px) {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
 `;
 
 const FooterLink = styled.a`
@@ -407,15 +600,27 @@ const FooterLink = styled.a`
   &:hover { color: #a7d221; }
 `;
 
+// Update Hero Section
+const HeroImage = styled.img`
+  width: 100%;
+  max-width: 800px;
+  height: auto;
+  border-radius: 1rem;
+  margin: 2rem auto;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+`;
+
 // END OF PART 1
 // FROG8 WEBSITE - PART 2: COMPONENT LOGIC & JSX (Hero to Products)
 
 // MAIN COMPONENT STARTS HERE
 const Frog8Website = () => {
   const [activeSection, setActiveSection] = useState('home');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
+    setIsMobileMenuOpen(false);
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
@@ -439,12 +644,17 @@ const Frog8Website = () => {
             <LogoContainer>
               <Logo src={frog8Logo} alt="Frog8 Logo" />
             </LogoContainer>
-            <NavLinks>
+            <MobileMenuButton onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </MobileMenuButton>
+            <NavLinks className={isMobileMenuOpen ? 'active' : ''}>
               <NavButton onClick={() => scrollToSection('home')}>Home</NavButton>
-              <NavButton onClick={() => scrollToSection('vision')}>Vision</NavButton>
-              <NavButton onClick={() => scrollToSection('products')}>Products</NavButton>
-              <NavButton onClick={() => scrollToSection('moat')}>Our Moat</NavButton>
-              <NavButton className="hide-mobile" onClick={() => scrollToSection('investment')}>Investment</NavButton>
+              <NavButton onClick={() => scrollToSection('ethos')}>Our Ethos</NavButton>
+              <NavButton onClick={() => scrollToSection('offerings')}>Offerings</NavButton>
+              <NavButton onClick={() => scrollToSection('deployments')}>Deployments</NavButton>
+              <NavButton onClick={() => scrollToSection('about')}>About</NavButton>
               <NavButton onClick={() => scrollToSection('contact')}>Contact</NavButton>
             </NavLinks>
           </NavContainer>
@@ -454,17 +664,81 @@ const Frog8Website = () => {
       {/* Hero Section */}
       <SectionGreen id="home">
         <SectionContainer>
-          <HeroTitle>India Next: Under-Captured, Not Underserved</HeroTitle>
+          <HeroTitle>Powering India Next: Seamless Journeys, Smarter Access</HeroTitle>
           <HeroSubtitle>
-            The next 100 million commuters are rising, mobile, and ready. Frog8 is a mobility-first infrastructure platform building unattended financial access channels across India. We serve digitally active, professionally employed commuters through integrated solutions in transit access, payments, and engagement.
+            <FaMobileAlt style={{ marginRight: '0.5rem' }} />
+            Unattended automation. Design-first experiences. Building for the next 100 million.
           </HeroSubtitle>
+          <p style={{ fontSize: '1.125rem', textAlign: 'center', marginBottom: '2rem', maxWidth: '64rem', margin: '0 auto 2rem' }}>
+            Frog8 builds connected platforms and intelligent kiosks that transform access—across transit, banking, and public services. From metro stations to rural banks, our solutions simplify how India moves, pays, and verifies.
+          </p>
+          <HeroImage src={heroImage} alt="Frog8 Smart Infrastructure" />
           <ButtonContainer>
-            <Button onClick={() => scrollToSection('vision')}>Our Vision</Button>
-            <ButtonOutline href="mailto:hello@frog8.in">Partner With Us</ButtonOutline>
-            <ButtonOutline href="mailto:hello@frog8.in">Investor Deck</ButtonOutline>
+            <Button onClick={() => scrollToSection('offerings')}>
+              Explore Our Offerings <FaArrowRight style={{ marginLeft: '0.5rem' }} />
+            </Button>
+            <ButtonOutline href="mailto:hello@frog8.in">
+              Schedule a Demo <FaHandshake style={{ marginLeft: '0.5rem' }} />
+            </ButtonOutline>
           </ButtonContainer>
         </SectionContainer>
       </SectionGreen>
+
+      {/* Our Ethos Section */}
+      <Section id="ethos">
+        <SectionContainer>
+          <SectionTitle>Our Ethos: Built for India Next</SectionTitle>
+          <SectionSubtitle>
+            <FaUsers style={{ marginRight: '0.5rem' }} />
+            Frog8 exists to unlock access — to mobility, finance, and opportunity — for the next 100 million Indians.
+          </SectionSubtitle>
+          
+          <div style={{ marginBottom: '3rem' }}>
+            <p style={{ fontSize: '1.125rem', textAlign: 'center', marginBottom: '2rem', maxWidth: '64rem', margin: '0 auto 2rem' }}>
+              We believe that access should not depend on where you live, what phone you carry, or how digitally savvy you are.
+            </p>
+            
+            <Grid className="cols-2" style={{ marginBottom: '3rem' }}>
+              <Card>
+                <CardTitle><FaUsers style={{ marginRight: '0.5rem' }} /> We Build For</CardTitle>
+                <List>
+                  <ListItem><FaUserShield style={{ marginRight: '0.5rem' }} /> the everyday commuter</ListItem>
+                  <ListItem><FaBuilding style={{ marginRight: '0.5rem' }} /> the rural account-holder</ListItem>
+                  <ListItem><FaWhatsapp style={{ marginRight: '0.5rem' }} /> the field agent with a phone full of WhatsApp messages</ListItem>
+                  <ListItem><FaChartLine style={{ marginRight: '0.5rem' }} /> the metro operator chasing uptime</ListItem>
+                </List>
+              </Card>
+              <Card>
+                <CardTitle><FaShieldAlt style={{ marginRight: '0.5rem' }} /> Our Differentiators</CardTitle>
+                <List>
+                  <ListItem><FaMobileAlt style={{ marginRight: '0.5rem' }} /> Design-First Experiences — Not just hardware, but journeys</ListItem>
+                  <ListItem><MdAccessTime style={{ marginRight: '0.5rem' }} /> Unattended, Everywhere — 24/7 access in metros, banks, and tier-3 towns</ListItem>
+                  <ListItem><MdSecurity style={{ marginRight: '0.5rem' }} /> Android Native. Industrial Grade. — 32" screens, biometric & card integrations</ListItem>
+                  <ListItem><FaWhatsapp style={{ marginRight: '0.5rem' }} /> Veriphy Connected — Workflows, data, documents, all secured and integrated</ListItem>
+                </List>
+              </Card>
+            </Grid>
+
+            <div style={{ textAlign: 'center', marginBottom: '2rem' }}>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Cultural Values</h3>
+              <Grid className="cols-3">
+                <SmallCard>
+                  <CardTitle><FaShieldAlt style={{ marginRight: '0.5rem' }} /> Do the right thing</CardTitle>
+                  <CardText>Integrity in every interaction and decision</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardTitle><FaChartLine style={{ marginRight: '0.5rem' }} /> Do it with excellence</CardTitle>
+                  <CardText>Quality and reliability in every solution</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardTitle><FaUsers style={{ marginRight: '0.5rem' }} /> Be a positive influence, 24/7</CardTitle>
+                  <CardText>Making a difference in people's lives</CardText>
+                </SmallCard>
+              </Grid>
+            </div>
+          </div>
+        </SectionContainer>
+      </Section>
 
       {/* Vision & Platform Overview */}
       <Section id="vision">
@@ -512,6 +786,141 @@ const Frog8Website = () => {
 
         </SectionContainer>
       </Section>
+
+      {/* Offerings Section */}
+      <SectionGray id="offerings">
+        <SectionContainer>
+          <SectionTitle><FaCreditCard style={{ marginRight: '0.5rem' }} /> Our Offerings</SectionTitle>
+          <SectionSubtitle>
+            A comprehensive suite of platforms and solutions designed for India's infrastructure needs
+          </SectionSubtitle>
+
+          {/* Platforms */}
+          <div style={{ marginBottom: '4rem' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
+              <FaBuilding style={{ marginRight: '0.5rem' }} /> Platforms
+            </h3>
+            
+            {/* Raahi Platform */}
+            <div style={{ marginBottom: '4rem' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>
+                <BsFillCreditCardFill style={{ marginRight: '0.5rem' }} /> Raahi: Transit & Lifestyle Card Platform
+              </h4>
+              <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+                An NCMC-compliant transit and merchant card that uses metro networks as high-intent, high-frequency channels to reach "India Next". Co-created with NSDL Payments Bank.
+              </p>
+
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+                <img src={cardImage} alt="Raahi Card" style={{ maxWidth: '400px', borderRadius: '1rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }} />
+              </div>
+
+              <HighlightBox style={{ marginBottom: '2rem' }}>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0369a1' }}>
+                  <FaCheckCircle style={{ marginRight: '0.5rem' }} /> What Raahi Enables
+                </h4>
+                <Grid className="cols-2">
+                  <div>
+                    <List>
+                      <ListItem><FaQrcode style={{ marginRight: '0.5rem' }} /> Tap-and-go metro access</ListItem>
+                      <ListItem><FaMoneyBillWave style={{ marginRight: '0.5rem' }} /> Merchant payments and discounts</ListItem>
+                    </List>
+                  </div>
+                  <div>
+                    <List>
+                      <ListItem><FaChartLine style={{ marginRight: '0.5rem' }} /> Loyalty points and micro-rewards</ListItem>
+                      <ListItem><FaBuilding style={{ marginRight: '0.5rem' }} /> Can be issued by any partner bank, not just NSDL PB</ListItem>
+                    </List>
+                  </div>
+                </Grid>
+              </HighlightBox>
+
+              <div style={{ marginBottom: '3rem' }}>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>
+                  <FaIdCard style={{ marginRight: '0.5rem' }} /> Flexible KYC Tiers & Features
+                </h4>
+                <Grid className="cols-4">
+                  <SmallCard>
+                    <CardTitle><FaUserShield style={{ marginRight: '0.5rem' }} /> Zero KYC</CardTitle>
+                    <CardText>Quick issuance at kiosks with ₹3K limit</CardText>
+                  </SmallCard>
+                  <SmallCard>
+                    <CardTitle><FaFingerprint style={{ marginRight: '0.5rem' }} /> Full KYC</CardTitle>
+                    <CardText>Aadhaar biometric or WhatsApp verification</CardText>
+                  </SmallCard>
+                  <SmallCard>
+                    <CardTitle><FaCreditCard style={{ marginRight: '0.5rem' }} /> Multi-Use</CardTitle>
+                    <CardText>Metro, bus, retail, and online payments</CardText>
+                  </SmallCard>
+                  <SmallCard>
+                    <CardTitle><FaChartLine style={{ marginRight: '0.5rem' }} /> Future Ready</CardTitle>
+                    <CardText>Credit products and BNPL integration</CardText>
+                  </SmallCard>
+                </Grid>
+              </div>
+            </div>
+
+            {/* Veriphy Platform */}
+            <div style={{ marginBottom: '4rem' }}>
+              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>
+                <FaWhatsapp style={{ marginRight: '0.5rem' }} /> Veriphy: Workflow & Ops Enabler
+              </h4>
+              <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+                A WhatsApp-native workflow engine built for real-world operations. Used by Frog8 internally and by partners externally.
+              </p>
+
+              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
+                <img src={workflowImage} alt="Veriphy Workflow" style={{ maxWidth: '600px', borderRadius: '1rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }} />
+              </div>
+
+              <HighlightBox style={{ marginBottom: '2rem' }}>
+                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0369a1' }}>
+                  <FaCheckCircle style={{ marginRight: '0.5rem' }} /> Where Veriphy Is Used
+                </h4>
+                <Grid className="cols-2">
+                  <div>
+                    <List>
+                      <ListItem><FaIdCard style={{ marginRight: '0.5rem' }} /> Card onboarding and KYC for Raahi</ListItem>
+                      <ListItem><FaUsers style={{ marginRight: '0.5rem' }} /> RM and service staff dashboards at metro stations</ListItem>
+                      <ListItem><FaChartLine style={{ marginRight: '0.5rem' }} /> TVM health checks, fault logs, and technician coordination</ListItem>
+                    </List>
+                  </div>
+                  <div>
+                    <List>
+                      <ListItem><FaBuilding style={{ marginRight: '0.5rem' }} /> Merchant acquiring, terminal tracking, and compliance</ListItem>
+                      <ListItem><FaWhatsapp style={{ marginRight: '0.5rem' }} /> Customer communication – offers, feedback, alerts</ListItem>
+                      <ListItem><FaRobot style={{ marginRight: '0.5rem' }} /> Multi-industry workflow automation</ListItem>
+                    </List>
+                  </div>
+                </Grid>
+              </HighlightBox>
+
+              <Grid className="cols-3">
+                <Card>
+                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>
+                    <FaChartLine style={{ marginRight: '0.5rem' }} /> Journey Tracking
+                  </h4>
+                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>Map touchpoints, identify delays, trigger nudges</p>
+                  <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Card issued but not activated → WhatsApp reminder</p>
+                </Card>
+                <Card>
+                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>
+                    <FaShieldAlt style={{ marginRight: '0.5rem' }} /> Document Verification
+                  </h4>
+                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>OCR, classify, and verify in local languages</p>
+                  <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Upload Aadhaar + PAN → Real-time verification</p>
+                </Card>
+                <Card>
+                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>
+                    <FaWhatsapp style={{ marginRight: '0.5rem' }} /> Communication Hub
+                  </h4>
+                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>WhatsApp, SMS, and app notifications</p>
+                  <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Automated follow-ups and support</p>
+                </Card>
+              </Grid>
+            </div>
+          </div>
+        </SectionContainer>
+      </SectionGray>
 
       {/* Products & Solutions */}
       <SectionGray id="products">
@@ -704,15 +1113,15 @@ const Frog8Website = () => {
                 <div>
                   <List>
                     <ListItem>Card onboarding and KYC for Raahi</ListItem>
-                    <ListItem>RM and service staff dashboards at metro stations</ListItem>
-                    <ListItem>TVM health checks, fault logs, and technician coordination</ListItem>
+                    <ListItem><FaUsers style={{ marginRight: '0.5rem' }} /> RM and service staff dashboards at metro stations</ListItem>
+                    <ListItem><FaChartLine style={{ marginRight: '0.5rem' }} /> TVM health checks, fault logs, and technician coordination</ListItem>
                   </List>
                 </div>
                 <div>
                   <List>
-                    <ListItem>Merchant acquiring, terminal tracking, and compliance</ListItem>
-                    <ListItem>Customer communication – offers, feedback, alerts</ListItem>
-                    <ListItem>Multi-industry workflow automation</ListItem>
+                    <ListItem><FaBuilding style={{ marginRight: '0.5rem' }} /> Merchant acquiring, terminal tracking, and compliance</ListItem>
+                    <ListItem><FaWhatsapp style={{ marginRight: '0.5rem' }} /> Customer communication – offers, feedback, alerts</ListItem>
+                    <ListItem><FaRobot style={{ marginRight: '0.5rem' }} /> Multi-industry workflow automation</ListItem>
                   </List>
                 </div>
               </Grid>
@@ -764,6 +1173,46 @@ const Frog8Website = () => {
           </div>
         </SectionContainer>
       </SectionGray>
+
+      {/* Deployments Section */}
+      <Section id="deployments">
+        <SectionContainer>
+          <SectionTitle>Our Deployments</SectionTitle>
+          <SectionSubtitle>
+            Real-world implementations with trusted partners across India
+          </SectionSubtitle>
+
+          <Grid className="cols-2" style={{ gap: '3rem', marginBottom: '4rem' }}>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>Active Deployments</h3>
+              <List>
+                <ListItem>Meta & BMRCL – WhatsApp ticketing platform (2019–2022), transitioned to AUM, still live today</ListItem>
+                <ListItem>BMRCL Metro – TVM deployments at Cubbon Park, MG Road, and now Baiyappanahalli and beyond</ListItem>
+                <ListItem>DBS, South Indian Bank – CTS implementations</ListItem>
+                <ListItem>Veena World – WhatsApp Marketing (Travelling)</ListItem>
+                <ListItem>Aditya Vision - WhatsApp Marketing (Retail)</ListItem>
+                <ListItem>Digital Banking Units – Navo rollouts underway for Tier 2/3 expansion</ListItem>
+              </List>
+            </div>
+            <QuoteCard>
+              <Quote>
+                "Live deployments with proven infrastructure, ready for rapid scaling across India's metro networks."
+              </Quote>
+            </QuoteCard>
+          </Grid>
+
+          <div style={{ textAlign: 'center' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '2rem' }}>Ready to Scale</h3>
+            <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+              Our solutions are battle-tested in real-world conditions, from metro stations to rural banks. We're ready to help you transform your infrastructure.
+            </p>
+            <ButtonContainer>
+              <ButtonOutline href="mailto:hello@frog8.in">Request Deployment Info</ButtonOutline>
+              <ButtonOutline href="mailto:hello@frog8.in">Schedule Site Visit</ButtonOutline>
+            </ButtonContainer>
+          </div>
+        </SectionContainer>
+      </Section>
 
       {/* Strategic Moat */}
       <Section id="moat">
@@ -965,24 +1414,90 @@ const Frog8Website = () => {
         </SectionContainer>
       </SectionGray>
 
-      {/* Contact */}
+      {/* About Section */}
+      <SectionGray id="about">
+        <SectionContainer>
+          <SectionTitle>About Frog8</SectionTitle>
+          <SectionSubtitle>
+            Design-led platform for unattended access, payments, and onboarding
+          </SectionSubtitle>
+
+          <Grid className="cols-2" style={{ gap: '3rem', marginBottom: '4rem' }}>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>What We Do</h3>
+              <p style={{ fontSize: '1.125rem', color: '#374151', marginBottom: '1.5rem' }}>
+                We build a modular stack combining industrial-grade hardware, secure workflow engines, messaging-native user interfaces, and form factor agnostic payment capabilities—designed to meet users where they are and institutions where they need to go.
+              </p>
+              <List>
+                <ListItem>Unattended access solutions</ListItem>
+                <ListItem>Secure onboarding platforms</ListItem>
+                <ListItem>Integrated payment systems</ListItem>
+                <ListItem>Industrial-grade hardware</ListItem>
+              </List>
+            </div>
+            <div>
+              <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1.5rem', color: '#a7d221' }}>What Guides Us</h3>
+              <Grid className="cols-2">
+                <SmallCard>
+                  <CardTitle>Integrity</CardTitle>
+                  <CardText>Doing the right thing, every time</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardTitle>Excellence</CardTitle>
+                  <CardText>Quality in every solution</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardTitle>Positive Influence</CardTitle>
+                  <CardText>Making a difference, 24/7</CardText>
+                </SmallCard>
+                <SmallCard>
+                  <CardTitle>Partnership</CardTitle>
+                  <CardText>Building together for India Next</CardText>
+                </SmallCard>
+              </Grid>
+            </div>
+          </Grid>
+
+          <div style={{ textAlign: 'center' }}>
+            <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', marginBottom: '1rem' }}>Why We Do It</h3>
+            <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
+              To serve the next 100 million Indians — across Bharat and Urban India. We believe in building infrastructure that makes access invisible, reliable, and real.
+            </p>
+          </div>
+        </SectionContainer>
+      </SectionGray>
+
+      {/* Contact Section */}
       <SectionGreen id="contact">
         <SectionContainer>
           <h2 style={{ fontSize: '1.875rem', fontWeight: 'bold', marginBottom: '2rem', textAlign: 'center' }}>
-            Let's Move India Forward
+            <FaHandshake style={{ marginRight: '0.5rem' }} /> Let's build the future of access — together
           </h2>
           <p style={{ fontSize: '1.125rem', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem', textAlign: 'center' }}>
-            Join us in building the infrastructure that will serve the next 100 million commuters. Transform transit stations into gateways for financial inclusion.
+            Join us in building the infrastructure that will serve the next 100 million. Transform transit stations into gateways for financial inclusion.
           </p>
+          
+          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+            <p style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>
+              <MdEmail style={{ marginRight: '0.5rem' }} /> Email: hello@frog8.in
+            </p>
+            <p style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>
+              <MdPhone style={{ marginRight: '0.5rem' }} /> Phone: +91-XXXXXXXXXX
+            </p>
+            <p style={{ fontSize: '1.125rem', marginBottom: '2rem' }}>
+              <MdLocationOn style={{ marginRight: '0.5rem' }} /> Location: Bengaluru, India
+            </p>
+          </div>
+
           <ButtonContainer>
             <ButtonOutline href="mailto:hello@frog8.in">
-              Request Demo
+              <FaPhone style={{ marginRight: '0.5rem' }} /> Request a Callback
             </ButtonOutline>
             <ButtonOutline href="mailto:hello@frog8.in">
-              Investment Discussion
+              <FaHandshake style={{ marginRight: '0.5rem' }} /> Schedule a Demo
             </ButtonOutline>
             <ButtonOutline href="mailto:hello@frog8.in">
-              Partnership Inquiry
+              <FaDownload style={{ marginRight: '0.5rem' }} /> Download Brochure
             </ButtonOutline>
           </ButtonContainer>
         </SectionContainer>
