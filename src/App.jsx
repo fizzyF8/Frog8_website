@@ -26,7 +26,8 @@ import {
   FaCheckCircle,
   FaLock,
   FaGlobe,
-  FaMobile
+  FaMobile,
+  FaTimes
 } from 'react-icons/fa';
 import { 
   MdSecurity, 
@@ -45,6 +46,111 @@ import {
   BsFillBuildingFill
 } from 'react-icons/bs';
 import frog8Logo from './assets/images/frog8_logo.jpg';
+
+// Form Styled Components
+const FormContainer = styled.div`
+  max-width: 600px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 2rem;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+`;
+
+const FormGroup = styled.div`
+  margin-bottom: 1.5rem;
+`;
+
+const Label = styled.label`
+  display: block;
+  margin-bottom: 0.5rem;
+  color: white;
+  font-weight: 500;
+`;
+
+const Input = styled.input`
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid ${props => props.error ? '#ef4444' : 'rgba(255, 255, 255, 0.2)'};
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.error ? '#ef4444' : 'white'};
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+`;
+
+const TextArea = styled.textarea`
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid ${props => props.error ? '#ef4444' : 'rgba(255, 255, 255, 0.2)'};
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  min-height: 120px;
+  resize: vertical;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.error ? '#ef4444' : 'white'};
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+`;
+
+const Select = styled.select`
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid ${props => props.error ? '#ef4444' : 'rgba(255, 255, 255, 0.2)'};
+  border-radius: 0.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+
+  &:focus {
+    outline: none;
+    border-color: ${props => props.error ? '#ef4444' : 'white'};
+    background: rgba(255, 255, 255, 0.15);
+  }
+
+  option {
+    background: #059669;
+    color: white;
+  }
+`;
+
+const ErrorMessage = styled.span`
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: block;
+`;
+
+const SuccessMessage = styled.div`
+  background: rgba(34, 197, 94, 0.2);
+  border: 1px solid #22c55e;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+`;
 
 // Demo images using placeholder services
 const heroImage = "https://placehold.co/800x400/059669/ffffff?text=Smart+Infrastructure";
@@ -255,29 +361,77 @@ const SectionSubtitle = styled.p`
   }
 `;
 
+const HeroSection = styled(SectionGreen)`
+  position: relative;
+  overflow: hidden;
+  padding: 6rem 0;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(5, 150, 105, 0.95) 0%, rgba(13, 148, 136, 0.95) 100%);
+    z-index: 1;
+  }
+`;
+
+const HeroContent = styled.div`
+  position: relative;
+  z-index: 2;
+`;
+
+const HeroVisual = styled.div`
+  position: relative;
+  width: 100%;
+  max-width: 1000px;
+  height: 500px;
+  margin: 2rem auto;
+  background: url('https://placehold.co/1000x500/ffffff/059669?text=3D+Network+Visualization') center/cover;
+  border-radius: 1rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg, rgba(5, 150, 105, 0.1) 0%, rgba(5, 150, 105, 0.3) 100%);
+    pointer-events: none;
+  }
+`;
+
 const HeroTitle = styled.h1`
-  font-size: 2.25rem;
-  font-weight: bold;
+  font-size: 3.5rem;
+  font-weight: 800;
   margin-bottom: 1.5rem;
   text-align: center;
-  @media (min-width: 768px) { font-size: 3.75rem; }
-  @media (max-width: 640px) {
-    font-size: 1.75rem;
-    margin-bottom: 1rem;
+  background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  
+  @media (max-width: 768px) {
+    font-size: 2.5rem;
   }
 `;
 
 const HeroSubtitle = styled.p`
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 2rem;
   max-width: 64rem;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  @media (min-width: 768px) { font-size: 1.5rem; }
-  @media (max-width: 640px) {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
+  color: rgba(255, 255, 255, 0.9);
+  
+  @media (max-width: 768px) {
+    font-size: 1.25rem;
   }
 `;
 
@@ -611,6 +765,125 @@ const HeroImage = styled.img`
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
 `;
 
+const ProductCard = styled.div`
+  background: white;
+  border-radius: 1rem;
+  padding: 2rem;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #059669 0%, #0d9488 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+`;
+
+const ProductIcon = styled.div`
+  width: 64px;
+  height: 64px;
+  background: #f0fdf4;
+  border-radius: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+  color: #059669;
+  font-size: 2rem;
+`;
+
+const ProductTitle = styled.h3`
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #1f2937;
+`;
+
+const ProductDescription = styled.p`
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+`;
+
+const ProductDetails = styled.div`
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  
+  ${ProductCard}:hover & {
+    max-height: 500px;
+  }
+`;
+
+const ProductFeature = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  color: #4b5563;
+  
+  svg {
+    margin-right: 0.5rem;
+    color: #059669;
+  }
+`;
+
+const Table = styled.table`
+  width: 100%;
+  border-collapse: collapse;
+  margin: 2rem 0;
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+`;
+
+const TableHeader = styled.th`
+  background: #f0fdf4;
+  color: #059669;
+  font-weight: 600;
+  text-align: left;
+  padding: 1rem;
+  border-bottom: 2px solid #dcfce7;
+`;
+
+const TableCell = styled.td`
+  padding: 1rem;
+  border-bottom: 1px solid #e5e7eb;
+  color: #4b5563;
+  
+  &:first-child {
+    font-weight: 500;
+    color: #1f2937;
+  }
+`;
+
+const FeatureCell = styled(TableCell)`
+  text-align: center;
+  
+  svg {
+    color: #059669;
+    font-size: 1.25rem;
+  }
+`;
+
 // END OF PART 1
 // FROG8 WEBSITE - PART 2: COMPONENT LOGIC & JSX (Hero to Products)
 
@@ -618,6 +891,99 @@ const HeroImage = styled.img`
 const Frog8Website = () => {
   const [activeSection, setActiveSection] = useState('home');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    company: '',
+    interest: '',
+    message: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitSuccess, setSubmitSuccess] = useState(false);
+
+  const validateForm = () => {
+    const newErrors = {};
+    
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email)) {
+      newErrors.email = 'Invalid email address';
+    }
+    
+    if (!formData.phone.trim()) {
+      newErrors.phone = 'Phone number is required';
+    } else if (!/^\+?[0-9]{10,12}$/.test(formData.phone.replace(/\D/g, ''))) {
+      newErrors.phone = 'Invalid phone number';
+    }
+    
+    if (!formData.interest) {
+      newErrors.interest = 'Please select your interest';
+    }
+    
+    if (!formData.message.trim()) {
+      newErrors.message = 'Message is required';
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    
+    if (!validateForm()) {
+      return;
+    }
+    
+    setIsSubmitting(true);
+    
+    try {
+      // Simulate API call
+      await new Promise(resolve => setTimeout(resolve, 1500));
+      
+      // Reset form and show success message
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        company: '',
+        interest: '',
+        message: ''
+      });
+      setSubmitSuccess(true);
+      
+      // Hide success message after 5 seconds
+      setTimeout(() => {
+        setSubmitSuccess(false);
+      }, 5000);
+    } catch (error) {
+      setErrors({ submit: 'Failed to send message. Please try again.' });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }));
+    
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => ({
+        ...prev,
+        [name]: ''
+      }));
+    }
+  };
 
   const scrollToSection = (sectionId) => {
     setActiveSection(sectionId);
@@ -663,27 +1029,36 @@ const Frog8Website = () => {
       </Header>
 
       {/* Hero Section */}
-      <SectionGreen id="home">
+      <HeroSection id="home">
         <SectionContainer>
-          <HeroTitle>Powering India Next: Seamless Journeys, Smarter Access</HeroTitle>
+          <HeroContent>
+            <HeroTitle>Powering India Next: Seamless Journeys, Smarter Access</HeroTitle>
           <HeroSubtitle>
-            <FaMobileAlt style={{ marginRight: '0.5rem' }} />
-            Unattended automation. Design-first experiences. Building for the next 100 million.
+              <FaMobileAlt style={{ marginRight: '0.5rem' }} />
+              Unattended automation. Design-first experiences. Building for the next 100 million.
           </HeroSubtitle>
-          <p style={{ fontSize: '1.125rem', textAlign: 'center', marginBottom: '2rem', maxWidth: '64rem', margin: '0 auto 2rem' }}>
-            Frog8 builds connected platforms and intelligent kiosks that transform access—across transit, banking, and public services. From metro stations to rural banks, our solutions simplify how India moves, pays, and verifies.
-          </p>
-          <HeroImage src={heroImage} alt="Smart Infrastructure for India's Next Generation" />
+            <p style={{ 
+              fontSize: '1.25rem', 
+              textAlign: 'center', 
+              marginBottom: '2rem', 
+              maxWidth: '64rem', 
+              margin: '0 auto 2rem',
+              color: 'rgba(255, 255, 255, 0.9)'
+            }}>
+              Frog8 builds connected platforms and intelligent kiosks that transform access—across transit, banking, and public services. From metro stations to rural banks, our solutions simplify how India moves, pays, and verifies.
+            </p>
+            <HeroVisual />
           <ButtonContainer>
-            <Button onClick={() => scrollToSection('offerings')}>
-              Explore Our Offerings <FaArrowRight style={{ marginLeft: '0.5rem' }} />
-            </Button>
-            <ButtonOutline href="mailto:hello@frog8.in">
-              Schedule a Demo <FaHandshake style={{ marginLeft: '0.5rem' }} />
-            </ButtonOutline>
+              <Button onClick={() => scrollToSection('offerings')}>
+                Explore Our Offerings <FaArrowRight style={{ marginLeft: '0.5rem' }} />
+              </Button>
+              <ButtonOutline href="mailto:hello@frog8.in">
+                Schedule a Demo <FaHandshake style={{ marginLeft: '0.5rem' }} />
+              </ButtonOutline>
           </ButtonContainer>
+          </HeroContent>
         </SectionContainer>
-      </SectionGreen>
+      </HeroSection>
 
       {/* Our Ethos Section */}
       <Section id="ethos">
@@ -796,129 +1171,175 @@ const Frog8Website = () => {
             A comprehensive suite of platforms and solutions designed for India's infrastructure needs
           </SectionSubtitle>
 
-          {/* Platforms */}
+          <Grid className="cols-3" style={{ marginBottom: '4rem' }}>
+            <ProductCard>
+              {/* 
+                Capturing the Commuter Journey
+                From ride-booking to rewards, Frog8 captures micro-moments to build a consented commuter graph—personalizing products and improving credit models.
+
+                Example Timeline:
+                8:04 AM - Rapido or Uber Auto booked
+                8:22 AM - Fastag-linked parking
+                8:45 AM - Coffee stop at station
+                2:30 PM - Raahi card offer via WhatsApp
+                6:15 PM - Reward voucher redeemed
+              */}
+              <ProductIcon>
+                <FaMobileAlt />
+              </ProductIcon>
+              <ProductTitle>Raahi Platform</ProductTitle>
+              <ProductDescription>
+                NCMC-compliant transit and merchant card platform for seamless mobility and payments.
+              </ProductDescription>
+              <ProductDetails>
+                <ProductFeature>
+                  <FaCheckCircle /> Tap-and-go metro access
+                </ProductFeature>
+                <ProductFeature>
+                  <FaMoneyBillWave /> Merchant payments and discounts
+                </ProductFeature>
+                <ProductFeature>
+                  <FaChartLine /> Loyalty points and micro-rewards
+                </ProductFeature>
+                <ProductFeature>
+                  <FaBuilding /> Bank-agnostic issuance
+                </ProductFeature>
+              </ProductDetails>
+            </ProductCard>
+
+            <ProductCard>
+              <ProductIcon>
+                <FaWhatsapp />
+              </ProductIcon>
+              <ProductTitle>Veriphy Platform</ProductTitle>
+              <ProductDescription>
+                WhatsApp-native workflow engine for secure onboarding and operations.
+              </ProductDescription>
+              <ProductDetails>
+                <ProductFeature>
+                  <FaIdCard /> Card onboarding and KYC
+                </ProductFeature>
+                <ProductFeature>
+                  <FaUsers /> Service staff dashboards
+                </ProductFeature>
+                <ProductFeature>
+                  <FaChartLine /> TVM health monitoring
+                </ProductFeature>
+                <ProductFeature>
+                  <FaRobot /> Multi-industry automation
+                </ProductFeature>
+              </ProductDetails>
+            </ProductCard>
+
+            <ProductCard>
+              <ProductIcon>
+                <FaBuilding />
+              </ProductIcon>
+              <ProductTitle>Transigo Series</ProductTitle>
+              <ProductDescription>
+                Industrial-grade kiosks for transit automation and financial services.
+              </ProductDescription>
+              <ProductDetails>
+                <ProductFeature>
+                  <FaQrcode /> QR ticket printing
+                </ProductFeature>
+                <ProductFeature>
+                  <FaMoneyBillWave /> Cash acceptance
+                </ProductFeature>
+                <ProductFeature>
+                  <FaFingerprint /> Biometric KYC
+                </ProductFeature>
+                <ProductFeature>
+                  <FaShieldAlt /> PCI-certified security
+                </ProductFeature>
+              </ProductDetails>
+            </ProductCard>
+          </Grid>
+
+          {/* Add Transigo Table Section */}
           <div style={{ marginBottom: '4rem' }}>
             <h3 style={{ fontSize: '1.5rem', fontWeight: 'bold', textAlign: 'center', marginBottom: '2rem' }}>
-              <FaBuilding style={{ marginRight: '0.5rem' }} /> Platforms
+              <FaBuilding style={{ marginRight: '0.5rem' }} /> Transigo Series: Complete Comparison
             </h3>
             
-            {/* Raahi Platform */}
-            <div style={{ marginBottom: '4rem' }}>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>
-                <BsFillCreditCardFill style={{ marginRight: '0.5rem' }} /> Raahi: Transit & Lifestyle Card Platform
-              </h4>
-              <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
-                An NCMC-compliant transit and merchant card that uses metro networks as high-intent, high-frequency channels to reach "India Next". Co-created with NSDL Payments Bank.
-              </p>
-
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-                <img src={cardImage} alt="Raahi Card" style={{ maxWidth: '400px', borderRadius: '1rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }} />
-              </div>
-
-              <HighlightBox style={{ marginBottom: '2rem' }}>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0369a1' }}>
-                  <FaCheckCircle style={{ marginRight: '0.5rem' }} /> What Raahi Enables
-                </h4>
-                <Grid className="cols-2">
-                  <div>
-                    <List>
-                      <ListItem><FaQrcode style={{ marginRight: '0.5rem' }} /> Tap-and-go metro access</ListItem>
-                      <ListItem><FaMoneyBillWave style={{ marginRight: '0.5rem' }} /> Merchant payments and discounts</ListItem>
-                    </List>
-                  </div>
-                  <div>
-                    <List>
-                      <ListItem><FaChartLine style={{ marginRight: '0.5rem' }} /> Loyalty points and micro-rewards</ListItem>
-                      <ListItem><FaBuilding style={{ marginRight: '0.5rem' }} /> Can be issued by any partner bank, not just NSDL PB</ListItem>
-                    </List>
-                  </div>
-                </Grid>
-              </HighlightBox>
-
-              <div style={{ marginBottom: '3rem' }}>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>
-                  <FaIdCard style={{ marginRight: '0.5rem' }} /> Flexible KYC Tiers & Features
-                </h4>
-                <Grid className="cols-4">
-                  <SmallCard>
-                    <CardTitle><FaUserShield style={{ marginRight: '0.5rem' }} /> Zero KYC</CardTitle>
-                    <CardText>Quick issuance at kiosks with ₹3K limit</CardText>
-                  </SmallCard>
-                  <SmallCard>
-                    <CardTitle><FaFingerprint style={{ marginRight: '0.5rem' }} /> Full KYC</CardTitle>
-                    <CardText>Aadhaar biometric or WhatsApp verification</CardText>
-                  </SmallCard>
-                  <SmallCard>
-                    <CardTitle><FaCreditCard style={{ marginRight: '0.5rem' }} /> Multi-Use</CardTitle>
-                    <CardText>Metro, bus, retail, and online payments</CardText>
-                  </SmallCard>
-                  <SmallCard>
-                    <CardTitle><FaChartLine style={{ marginRight: '0.5rem' }} /> Future Ready</CardTitle>
-                    <CardText>Credit products and BNPL integration</CardText>
-                  </SmallCard>
-                </Grid>
-              </div>
-            </div>
-
-            {/* Veriphy Platform */}
-            <div style={{ marginBottom: '4rem' }}>
-              <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#a7d221' }}>
-                <FaWhatsapp style={{ marginRight: '0.5rem' }} /> Veriphy: Workflow & Ops Enabler
-              </h4>
-              <p style={{ fontSize: '1.125rem', textAlign: 'center', color: '#6b7280', marginBottom: '2rem', maxWidth: '48rem', margin: '0 auto 2rem' }}>
-                A WhatsApp-native workflow engine built for real-world operations. Used by Frog8 internally and by partners externally.
-              </p>
-
-              <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '2rem' }}>
-                <img src={workflowImage} alt="Veriphy Workflow" style={{ maxWidth: '600px', borderRadius: '1rem', boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1)' }} />
-              </div>
-
-              <HighlightBox style={{ marginBottom: '2rem' }}>
-                <h4 style={{ fontSize: '1.25rem', fontWeight: 'bold', marginBottom: '1rem', color: '#0369a1' }}>
-                  <FaCheckCircle style={{ marginRight: '0.5rem' }} /> Where Veriphy Is Used
-                </h4>
-                <Grid className="cols-2">
-                  <div>
-                    <List>
-                      <ListItem><FaIdCard style={{ marginRight: '0.5rem' }} /> Card onboarding and KYC for Raahi</ListItem>
-                      <ListItem><FaUsers style={{ marginRight: '0.5rem' }} /> RM and service staff dashboards at metro stations</ListItem>
-                      <ListItem><FaChartLine style={{ marginRight: '0.5rem' }} /> TVM health checks, fault logs, and technician coordination</ListItem>
-                    </List>
-                  </div>
-                  <div>
-                    <List>
-                      <ListItem><FaBuilding style={{ marginRight: '0.5rem' }} /> Merchant acquiring, terminal tracking, and compliance</ListItem>
-                      <ListItem><FaWhatsapp style={{ marginRight: '0.5rem' }} /> Customer communication – offers, feedback, alerts</ListItem>
-                      <ListItem><FaRobot style={{ marginRight: '0.5rem' }} /> Multi-industry workflow automation</ListItem>
-                    </List>
-                  </div>
-                </Grid>
-              </HighlightBox>
-
-              <Grid className="cols-3">
-                <Card>
-                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>
-                    <FaChartLine style={{ marginRight: '0.5rem' }} /> Journey Tracking
-                  </h4>
-                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>Map touchpoints, identify delays, trigger nudges</p>
-                  <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Card issued but not activated → WhatsApp reminder</p>
-                </Card>
-                <Card>
-                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>
-                    <FaShieldAlt style={{ marginRight: '0.5rem' }} /> Document Verification
-                  </h4>
-                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>OCR, classify, and verify in local languages</p>
-                  <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Upload Aadhaar + PAN → Real-time verification</p>
-                </Card>
-                <Card>
-                  <h4 style={{ fontSize: '1.125rem', fontWeight: '600', marginBottom: '0.75rem', color: '#a7d221' }}>
-                    <FaWhatsapp style={{ marginRight: '0.5rem' }} /> Communication Hub
-                  </h4>
-                  <p style={{ color: '#6b7280', fontSize: '0.875rem', marginBottom: '0.5rem' }}>WhatsApp, SMS, and app notifications</p>
-                  <p style={{ fontSize: '0.75rem', fontStyle: 'italic', color: '#9ca3af' }}>Automated follow-ups and support</p>
-                </Card>
-              </Grid>
-            </div>
+            <Table>
+              <thead>
+                <tr>
+                  <TableHeader>Feature</TableHeader>
+                  <TableHeader>Transigo Lite</TableHeader>
+                  <TableHeader>Transigo Ticket+</TableHeader>
+                  <TableHeader>Transigo Card</TableHeader>
+                  <TableHeader>Transigo Card+</TableHeader>
+                  <TableHeader>Transigo Max</TableHeader>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <TableCell>QR Ticket Printing</TableCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>UPI Payments</TableCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>Cash Acceptance</TableCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>Card Issuance</TableCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>Full KYC</TableCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>Biometric Scanner</TableCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>Card Personalization</TableCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+                <tr>
+                  <TableCell>HD Camera</TableCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaTimes /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                  <FeatureCell><FaCheckCircle /></FeatureCell>
+                </tr>
+              </tbody>
+            </Table>
           </div>
         </SectionContainer>
       </SectionGray>
@@ -1478,7 +1899,106 @@ const Frog8Website = () => {
             Join us in building the infrastructure that will serve the next 100 million. Transform transit stations into gateways for financial inclusion.
           </p>
           
-          <div style={{ textAlign: 'center', marginBottom: '3rem' }}>
+          <FormContainer>
+            {submitSuccess && (
+              <SuccessMessage>
+                Thank you for your message! We'll get back to you soon.
+              </SuccessMessage>
+            )}
+            
+            <form onSubmit={handleSubmit}>
+              <Grid className="cols-2">
+                <FormGroup>
+                  <Label>Name</Label>
+                  <Input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleChange}
+                    placeholder="Your name"
+                    error={errors.name}
+                  />
+                  {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
+                </FormGroup>
+                <FormGroup>
+                  <Label>Email</Label>
+                  <Input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleChange}
+                    placeholder="your.email@example.com"
+                    error={errors.email}
+                  />
+                  {errors.email && <ErrorMessage>{errors.email}</ErrorMessage>}
+                </FormGroup>
+              </Grid>
+              
+              <FormGroup>
+                <Label>Phone</Label>
+                <Input
+                  type="tel"
+                  name="phone"
+                  value={formData.phone}
+                  onChange={handleChange}
+                  placeholder="+91 XXXXXXXXXX"
+                  error={errors.phone}
+                />
+                {errors.phone && <ErrorMessage>{errors.phone}</ErrorMessage>}
+              </FormGroup>
+              
+              <FormGroup>
+                <Label>Company</Label>
+                <Input
+                  type="text"
+                  name="company"
+                  value={formData.company}
+                  onChange={handleChange}
+                  placeholder="Your company name"
+                />
+              </FormGroup>
+              
+              <FormGroup>
+                <Label>Interest</Label>
+                <Select
+                  name="interest"
+                  value={formData.interest}
+                  onChange={handleChange}
+                  error={errors.interest}
+                >
+                  <option value="">Select your interest</option>
+                  <option value="partnership">Partnership Opportunity</option>
+                  <option value="deployment">Deployment Inquiry</option>
+                  <option value="demo">Schedule a Demo</option>
+                  <option value="investment">Investment Interest</option>
+                  <option value="other">Other</option>
+                </Select>
+                {errors.interest && <ErrorMessage>{errors.interest}</ErrorMessage>}
+              </FormGroup>
+              
+              <FormGroup>
+                <Label>Message</Label>
+                <TextArea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  placeholder="Tell us about your needs and how we can help..."
+                  error={errors.message}
+                />
+                {errors.message && <ErrorMessage>{errors.message}</ErrorMessage>}
+              </FormGroup>
+              
+              {errors.submit && <ErrorMessage style={{ textAlign: 'center', marginBottom: '1rem' }}>{errors.submit}</ErrorMessage>}
+              
+          <ButtonContainer>
+                <Button type="submit" disabled={isSubmitting}>
+                  {isSubmitting ? 'Sending...' : 'Send Message'} <FaArrowRight style={{ marginLeft: '0.5rem' }} />
+                </Button>
+          </ButtonContainer>
+            </form>
+          </FormContainer>
+
+          <div style={{ textAlign: 'center', marginTop: '3rem' }}>
             <p style={{ fontSize: '1.125rem', marginBottom: '1rem' }}>
               <MdEmail style={{ marginRight: '0.5rem' }} /> Email: hello@frog8.in
             </p>
@@ -1489,18 +2009,6 @@ const Frog8Website = () => {
               <MdLocationOn style={{ marginRight: '0.5rem' }} /> Location: Bengaluru, India
             </p>
           </div>
-
-          <ButtonContainer>
-            <ButtonOutline href="mailto:hello@frog8.in">
-              <FaPhone style={{ marginRight: '0.5rem' }} /> Request a Callback
-            </ButtonOutline>
-            <ButtonOutline href="mailto:hello@frog8.in">
-              <FaHandshake style={{ marginRight: '0.5rem' }} /> Schedule a Demo
-            </ButtonOutline>
-            <ButtonOutline href="mailto:hello@frog8.in">
-              <FaDownload style={{ marginRight: '0.5rem' }} /> Download Brochure
-            </ButtonOutline>
-          </ButtonContainer>
         </SectionContainer>
       </SectionGreen>
 
