@@ -26,8 +26,7 @@ import {
   FaCheckCircle,
   FaLock,
   FaGlobe,
-  FaMobile,
-  FaHandshake
+  FaMobile
 } from 'react-icons/fa';
 import { 
   MdSecurity, 
@@ -46,10 +45,12 @@ import {
   BsFillBuildingFill
 } from 'react-icons/bs';
 import frog8Logo from './assets/images/frog8_logo.jpg';
-import heroImage from './assets/images/hero-image.jpg';
-import kioskImage from './assets/images/kiosk-image.jpg';
-import cardImage from './assets/images/card-image.jpg';
-import workflowImage from './assets/images/workflow-image.jpg';
+
+// Demo images using placeholder services
+const heroImage = "https://placehold.co/800x400/059669/ffffff?text=Smart+Infrastructure";
+const cardImage = "https://placehold.co/400x300/059669/ffffff?text=Raahi+Card";
+const workflowImage = "https://placehold.co/600x400/059669/ffffff?text=Veriphy+Workflow";
+const kioskImage = "https://placehold.co/600x400/059669/ffffff?text=Smart+Kiosk";
 
 // ALL STYLED COMPONENTS
 const Container = styled.div`
@@ -672,7 +673,7 @@ const Frog8Website = () => {
           <p style={{ fontSize: '1.125rem', textAlign: 'center', marginBottom: '2rem', maxWidth: '64rem', margin: '0 auto 2rem' }}>
             Frog8 builds connected platforms and intelligent kiosks that transform access—across transit, banking, and public services. From metro stations to rural banks, our solutions simplify how India moves, pays, and verifies.
           </p>
-          <HeroImage src={heroImage} alt="Frog8 Smart Infrastructure" />
+          <HeroImage src={heroImage} alt="Smart Infrastructure for India's Next Generation" />
           <ButtonContainer>
             <Button onClick={() => scrollToSection('offerings')}>
               Explore Our Offerings <FaArrowRight style={{ marginLeft: '0.5rem' }} />
